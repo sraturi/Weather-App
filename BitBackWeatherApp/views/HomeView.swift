@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
-   
+    
     @GestureState private var dragTranslation: CGFloat = 0
     
     @ObservedObject var controller = HomeController()
-
+    
     // this is the main body
     var body: some View {
         GeometryReader { geo in
@@ -54,7 +54,9 @@ struct HomeView: View {
                         controller.userPulledDown()
                     }
                 }
-            ).background(controller.background.ignoresSafeArea())
+            ).background(controller.background.ignoresSafeArea()).onAppear {
+                print("on appear home")
+            }
         }
     }
     
@@ -82,7 +84,9 @@ struct HomeView: View {
             .frame(width: size.width/2.5, height: size.height/12)
             Spacer()
             Text(controller.getTodaysForcast()).font(.body).multilineTextAlignment(.center).padding(.horizontal)
-                .fixedSize(horizontal: false, vertical: true)
+                .fixedSize(horizontal: false, vertical: true).onTapGesture {
+                    controller.speakText(text: controller.getTodaysForcast());
+                }
         }
     }
     
@@ -96,7 +100,9 @@ struct HomeView: View {
                     + Text("°\(controller.isCelcious ? "C" : "F")").font(.custom("", size: size.width/20)).baselineOffset(size.width/(size.width/10)).tracking(2)
             }
             Spacer()
-            Text(controller.getTommrowForcast()).font(.body).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal)
+            Text(controller.getTommrowForcast()).font(.body).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal).onTapGesture {
+                controller.speakText(text: controller.getTommrowForcast());
+            }
         }
         
     }

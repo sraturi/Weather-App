@@ -7,8 +7,11 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 class HomeController:ObservableObject {
+    
+    let speaker = AudioController.getInstance()
     
     
     private let locationManager: LocationManager
@@ -24,7 +27,7 @@ class HomeController:ObservableObject {
     @Published var background: LinearGradient = WeatherGradients.thunder
     @Published var isClearSky = false
     @Published var weatherData = dummyWeatherData
-
+    
     
     init() {
         locationManager = LocationManager()
@@ -36,6 +39,9 @@ class HomeController:ObservableObject {
         
     }
     
+    func speakText(text:String) {
+        speaker.speakText(text: text)
+    }
     
     func userPulledDown() {
         userPullCount += 1
@@ -100,7 +106,7 @@ class HomeController:ObservableObject {
         }else {
             feelsLike = MathFunctions.kelvinToFehr(temp: weatherData.current?.feelsLike ?? 0)
         }
-        return "Today’s temprature in \(city), \(country) will be \(currTemp) degrees \(isCelcious ? "celsius" : "fahrenheit"). you will see \(weatherData.current?.weather?[0].weatherDescription ?? "NA") and temperature will feel like \(feelsLike) degrees \(isCelcious ? "celsius" : "fahrenheit")."
+        return "Today’s temprature in \(city), \(country) will be \(currTemp) degrees \(isCelcious ? "celsius" : "fahrenheit"). You will see \(weatherData.current?.weather?[0].weatherDescription ?? "NA") and temperature will feel like \(feelsLike) degrees \(isCelcious ? "celsius" : "fahrenheit")."
     }
     
     func getTommrowForcast() -> String {

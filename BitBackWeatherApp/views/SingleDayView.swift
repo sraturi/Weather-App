@@ -9,52 +9,33 @@ import SwiftUI
 
 
 struct SingleDayView: View {
-   var daily: Daily
-   
-   @State var hasWeatherIcon: Bool = false
-   @State private var weatherIcon: UIImage?
-   @Binding var isCelsious: Bool
-   
-   
-   let dayTimePeriodFormatter = DateFormatter()
-   let dateString: String
-   
-   init(daily: Daily, isCelsious: Binding<Bool>) {
-       self._isCelsious = isCelsious
-       self.daily = daily
-       dayTimePeriodFormatter.dateFormat = "EEE"
-       let nsDate = NSDate(timeIntervalSince1970: Double(daily.sunrise!))
-       dateString = dayTimePeriodFormatter.string(from: nsDate as Date)
-   }
     
     
-   func getWeatherIcon() {
-       NetWorkManager.getImage(icon: daily.weather![0].icon!) { (iconStr,result)  in
-           if(iconStr == daily.weather![0].icon){
-           weatherIcon = result
-           hasWeatherIcon = true
-           }
-       }
-   }
-   
-   var body: some View {
-       GeometryReader { geo in
-           VStack{
-               Spacer()
-               Text("\(dateString)")
-               Spacer()
-               Text("\(isCelsious ? MathFunctions.kelvinToCels(temp: daily.temp?.max ?? 0) : MathFunctions.kelvinToFehr(temp: daily.feelsLike?.day ?? 0))").onAppear(perform: {
-                   getWeatherIcon()
-               })
-               if hasWeatherIcon {
-                   Image(uiImage: weatherIcon!).resizable().frame(width: 25, height: 25, alignment: .center)
-               }
-               Text(daily.weather?[0].main ?? "").multilineTextAlignment(.center)
-               Spacer()
-           }.frame(width: geo.size.width, height: geo.size.height, alignment: .top)
-           .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.3)))
-       }
-   }
+    @ObservedObject var controller:SingleDayController
+    
+    init(daily: Daily, isCelsious: Binding<Bool>) {
+        controller = SingleDayController(daily: daily, isCelsious: isCelsious)
+    }
+    
+    var body: some View {
+        GeometryReader { geo in
+            VStack{
+                Spacer()
+                Text("\(controller.dateString)")
+                Spacer()
+                Text("\(controller.getTodayMax())")
+                
+                Image(uiImage: $controller.weatherIcon.wrappedValue ?? UIImage()).resizable().frame(width: 25, height: 25, alignment: .center)
+                
+                Text(controller.daily.weather?[0].main ?? "").multilineTextAlignment(.center)
+                Spacer()
+            }.frame(width: geo.size.width, height: geo.size.height, alignment: .top)
+            .onTapGesture {
+                controller.speakWeather()
+            }
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.3)))
+        }
+    }
 }
 
 struct SingleDayView_Previews: PreviewProvider {

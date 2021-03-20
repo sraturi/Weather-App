@@ -16,14 +16,12 @@ struct MyFileManager {
         
         let data = image.pngData()
         try? data?.write(to: url)
-        print("saving image complete")
     }
     
     static func readImage(name:String) -> Data? {
         
         let url = self.getDocumentDirectory().appendingPathComponent(name)
         if let data = try? Data(contentsOf: url){
-            print("We were able to read the file!!")
             return data
         }
         print(" failed: reading url from: \(url.absoluteString)")

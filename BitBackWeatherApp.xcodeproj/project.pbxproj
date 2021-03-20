@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		961919AD260563560013D55E /* SingleDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961919AC260563560013D55E /* SingleDayView.swift */; };
+		964DAA1C2605A3AF009254D9 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964DAA1B2605A3AF009254D9 /* AudioController.swift */; };
+		964DAA202605C0EC009254D9 /* SingleDayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964DAA1F2605C0EC009254D9 /* SingleDayController.swift */; };
 		9666D60126028D8F00056A7D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9666D60026028D8F00056A7D /* LocationManager.swift */; };
 		9666D6082602ADC000056A7D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9666D6072602ADC000056A7D /* NetworkManager.swift */; };
 		9666D60B2602D2B400056A7D /* MultipleDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9666D60A2602D2B400056A7D /* MultipleDayView.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		961919AC260563560013D55E /* SingleDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayView.swift; sourceTree = "<group>"; };
+		964DAA1B2605A3AF009254D9 /* AudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		964DAA1F2605C0EC009254D9 /* SingleDayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayController.swift; sourceTree = "<group>"; };
 		9666D60026028D8F00056A7D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		9666D6072602ADC000056A7D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		9666D60A2602D2B400056A7D /* MultipleDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleDayView.swift; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				9666D60026028D8F00056A7D /* LocationManager.swift */,
 				9666D6072602ADC000056A7D /* NetworkManager.swift */,
 				968A817F260585530071B2E8 /* MyFileManager.swift */,
+				964DAA1B2605A3AF009254D9 /* AudioController.swift */,
+				964DAA1F2605C0EC009254D9 /* SingleDayController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964DAA202605C0EC009254D9 /* SingleDayController.swift in Sources */,
 				96B062EF2601EA6C000A321F /* HomeController.swift in Sources */,
 				96B062D3260190EC000A321F /* HomeView.swift in Sources */,
 				968A8180260585530071B2E8 /* MyFileManager.swift in Sources */,
@@ -282,6 +289,7 @@
 				961919AD260563560013D55E /* SingleDayView.swift in Sources */,
 				96B062D1260190EC000A321F /* BitBackWeatherAppApp.swift in Sources */,
 				96B062E72601BB87000A321F /* MyGradients.swift in Sources */,
+				964DAA1C2605A3AF009254D9 /* AudioController.swift in Sources */,
 				9666D6102602F02D00056A7D /* MathFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,8 +14,6 @@ struct CustomToggleStyle: ToggleStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         GeometryReader { geo in
-            
-            
             ZStack{
                 RoundedRectangle(cornerRadius: 10).fill(Color.white.opacity(0.3))
                 RoundedRectangle(cornerRadius: 10).fill(selectedGradient).opacity(1).blur(radius: 30, opaque: true)
