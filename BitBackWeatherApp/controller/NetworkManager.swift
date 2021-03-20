@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NetWorkManager {
     
-    static let API_KEY = "INSERT API KEY HERE"
+    static let API_KEY = "f63157eb4dabb812ff57f3cc2fd98172"
     
     static func getImage(icon:String, completion: (@escaping (String, UIImage?) -> Void)) {
         let data = MyFileManager.readImage(name: icon)
@@ -48,6 +48,9 @@ struct NetWorkManager {
         let urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(lat)&lon=\(long)&exclude=hourly,minutely&appid=\(API_KEY)"
         guard let url = URL(string: urlString) else {
             print("Invalid URL")
+            DispatchQueue.main.async {
+                completion(nil)
+            }
             return
         }
         let request = URLRequest(url: url);

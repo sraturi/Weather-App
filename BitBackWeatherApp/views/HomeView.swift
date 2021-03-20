@@ -63,7 +63,7 @@ struct HomeView: View {
     func getTodaysWeather(size: CGSize) -> some View {
         Group {
             Spacer()
-            Text("\(controller.city), \(controller.country) ").font(.custom("", size: size.width/16)).tracking(3)
+            Text("\(controller.city), \(controller.country) ").font(.custom("", size: size.width/16)).tracking(3).multilineTextAlignment(.center)
             Spacer()
             Text("Today").font(.custom("", size: size.width/20)).fontWeight(.semibold)
             Spacer()

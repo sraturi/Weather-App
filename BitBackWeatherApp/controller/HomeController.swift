@@ -58,6 +58,10 @@ class HomeController:ObservableObject {
         isFetchingInfo = true
         NetWorkManager.fetchTodaysWeatherFromNetwork(lat: locationManager.latitude, long: locationManager.longitude) { (decodedResult) in
             guard let res = decodedResult else {
+                DispatchQueue.main.async {
+                    
+                    self.isFetchingInfo = false
+                }
                 return
             }
             // let whoever is observing us know we have location available
@@ -149,15 +153,15 @@ class HomeController:ObservableObject {
             isClearSky = false
             background =  WeatherGradients.thunder
         default:
-            background =  WeatherGradients.clear
-            isClearSky = true
+            background =  WeatherGradients.atmosphere
+            isClearSky = false
         }
         
         
     }
     
     func isHotTemperature() -> Bool {
-        let x = Double(MathFunctions.kelvinToCels(temp: (weatherData.daily?[0].temp?.day) ?? 0)) ?? 0 > 28
+        let x = Double(MathFunctions.kelvinToCels(temp: (weatherData.daily?[0].temp?.day) ?? 0)) ?? 0 > 30
         return x
     }
 }
