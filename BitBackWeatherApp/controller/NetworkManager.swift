@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NetWorkManager {
     
-    static let API_KEY = "f63157eb4dabb812ff57f3cc2fd98172"
+    static let API_KEY = "API KEY FROM OPEN WEATHER MAP"
     
     static func getImage(icon:String, completion: (@escaping (String, UIImage?) -> Void)) {
         let data = MyFileManager.readImage(name: icon)
